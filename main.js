@@ -33,7 +33,8 @@ function createCard(item) {
     <button class="btn btn-melora details-btn" type="button">MORE</button>
     <button class="fav-btn" type="button">♥</button>
   `;
-  
+
+ 
   const heart = card.querySelector(".fav-btn");
   heart.addEventListener("click", function (event) {
     toggleFavorite(item.id, event.target);
@@ -41,6 +42,7 @@ function createCard(item) {
 
   return card;
 }
+
 
 function toggleFavorite(id, button) {
   if (favorites.includes(id)) {
@@ -63,6 +65,7 @@ function showProducts(list) {
   });
   setupMoreButtons();
 }
+
 
 function applyFilters() {
   const searchText = document.getElementById("search-input").value;
@@ -91,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
       saleBox.addEventListener("change", applyFilters);
     }
   }
-  
+
   document.getElementById("theme-toggle").addEventListener("click", function () {
     document.body.classList.toggle("dark");
   });
