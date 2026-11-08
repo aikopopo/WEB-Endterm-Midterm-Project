@@ -25,7 +25,9 @@
 
       <ul class="menu menu-right">
         <li><a href="clutches.html">Clutches</a></li>
-        <li><a href="reviews.html">Rewiews</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><button id="theme-toggle" type="button">🌙</button></li>
+        <li>♥️ <span id="fav-count">0</span></li>
       </ul>
     </nav>
   </header>
@@ -33,68 +35,21 @@
   <main>
     <section class="container-fluid px-md-5 py-5">
       <h1 class="section-title mb-4">BRIDAL</h1>
+
       <ul class="tabs">
-        <li><a href="#" class="active">All</a></li>
-        <li><a href="#">Ball Gown</a></li>
-        <li><a href="#">A-Line</a></li>
-        <li><a href="#">Mermaid</a></li>
-        <li><a href="#">Lace</a></li>
+        <li><a href="#" class="active" data-type="all">All</a></li>
+        <li><a href="#" data-type="ball-gown">Ball Gown</a></li>
+        <li><a href="#" data-type="a-line">A-Line</a></li>
+        <li><a href="#" data-type="mermaid">Mermaid</a></li>
+        <li><a href="#" data-type="lace">Lace</a></li>
       </ul>
 
       <div class="bridal-box">
-        <div class="row g-4">
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.18.34.jpeg" alt="Ball gown with lace sleeves">
-              <p class="item-name">Look 1</p>
-              <p class="item-price">Rp. 129.000.000</p>
-            </article>
-          </div>
+        <label for="search-input" class="visually-hidden">Search</label>
+        <input type="text" id="search-input" class="form-control mb-3" placeholder="Search by name...">
 
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.18.40.jpeg" alt="Lace halter dress with high slit">
-              <p class="item-name">Look 2</p>
-              <p class="item-price">Rp. 139.000.000</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.21.51.jpeg" alt="Wedding dress with V-neck lace sleeves">
-              <p class="item-name">Look 3</p>
-              <p class="item-price">Rp. 130.000.000</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.18.37.jpeg" alt="Short lace dress with long veil">
-              <p class="item-name">Look 4</p>
-              <p class="item-price">Rp. 229.000.000</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.21.48.jpeg" alt="Mermaid lace wedding dress with veil">
-              <p class="item-name">Look 5</p>
-              <p class="item-price">Rp. 119.000.000</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="card-item">
-              <img src="photo_2026-10-03 19.21.49.jpeg" alt="Lace wedding dress with long sleeves and veil">
-              <p class="item-name">Look 6</p>
-              <p class="item-price">Rp. 225.000.000</p>
-            </article>
-          </div>
-        </div>
-
-        <div class="text-center mt-4">
-          <a href="contact.html" class="btn btn-melora">SEE MORE &rarr;</a>
-        </div>
+        <p id="message"></p>
+        <div id="featured-grid" class="gallery" data-category="bridal"></div>
       </div>
     </section>
 
@@ -105,51 +60,27 @@
         <table class="table table-bordered text-center align-middle">
           <caption>All measurements are in centimeters</caption>
           <thead class="table-light">
-            <tr>
-              <th>Size</th>
-              <th>Bust</th>
-              <th>Waist</th>
-              <th>Hips</th>
-            </tr>
+            <tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hips</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td>XS</td>
-              <td>82</td>
-              <td>64</td>
-              <td>88</td>
-            </tr>
-            <tr>
-              <td>S</td>
-              <td>86</td>
-              <td>68</td>
-              <td>92</td>
-            </tr>
-            <tr>
-              <td>M</td>
-              <td>90</td>
-              <td>72</td>
-              <td>96</td>
-            </tr>
-            <tr>
-              <td>L</td>
-              <td>96</td>
-              <td>78</td>
-              <td>102</td>
-            </tr>
-            <tr>
-              <td>XL</td>
-              <td>102</td>
-              <td>84</td>
-              <td>108</td>
-            </tr>
+            <tr><td>XS</td><td>82</td><td>64</td><td>88</td></tr>
+            <tr><td>S</td><td>86</td><td>68</td><td>92</td></tr>
+            <tr><td>M</td><td>90</td><td>72</td><td>96</td></tr>
+            <tr><td>L</td><td>96</td><td>78</td><td>102</td></tr>
+            <tr><td>XL</td><td>102</td><td>84</td><td>108</td></tr>
           </tbody>
         </table>
       </div>
     </section>
   </main>
+
   <footer class="site-footer text-center py-4">
     <p class="mb-0">&copy; 2026 MELORA clothing. All rights reserved.</p>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
