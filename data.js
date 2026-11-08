@@ -13,7 +13,11 @@ const products = [
   { id: 11, name: "Bridal Look 5", price: 119000000, category: "bridal", type: "mermaid", sale: false, image: "photo_2026-10-03 19.21.48.jpeg", description: "Mermaid lace wedding dress with veil." },
   { id: 12, name: "Bridal Look 6", price: 225000000, category: "bridal", type: "lace", sale: false, image: "photo_2026-10-03 19.21.49.jpeg", description: "Lace wedding dress with long sleeves and veil." },
 
-  { id: 13, name: "Gold Crystal Clutch", price: 95000, category: "clutch", sale: true, image: "photo_2026-10-03 21.24.36.jpeg", description: "Gold clutch with crystal clasp." }
+  { id: 13, name: "Gold Clutch Cecilia", price: 95000, category: "clutch", sale: false, image: "photo_2026-10-03 21.24.36.jpeg", description: "Gold clutch with Carvela Cecilia trim." },
+  { id: 14, name: "Carvela Cecilia Hard Clutch", price: 110000, category: "clutch", sale: true, image: "G80658s4(2).jpg", description: "Hard clutch with a pearl finish." },
+  { id: 15, name: "Silver Elida Clutch", price: 105000, category: "clutch", sale: false, image: "photo_2026-10-03 21.27.01.jpeg", description: "Silver crystal clutch with a gold chain (Dune London Elida)." },
+  { id: 16, name: "Silver Envelope Clutch", price: 85000, category: "clutch", sale: false, image: "photo_2026-10-03 21.25.35.jpeg", description: "Silver envelope clutch." },
+  { id: 17, name: "Silver Printed Clutch", price: 100000, category: "clutch", sale: false, image: "photo_2026-10-03 21.28.05.jpeg", description: "Silver crystal bow clutch (Dune London Printed)." }
 ];
 
 let favorites = [];
