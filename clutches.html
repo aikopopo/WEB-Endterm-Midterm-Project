@@ -24,50 +24,30 @@
 
       <ul class="menu menu-right">
         <li><a href="clutches.html" class="active">Clutches</a></li>
-        <li><a href="reviews.html">Rewiews</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><button id="theme-toggle" type="button">🌙</button></li>
+        <li>♥️ <span id="fav-count">0</span></li>
       </ul>
     </nav>
   </header>
 
   <main class="container py-5">
-
     <h1 class="section-title">Our Signature Clutches</h1>
-    <section class="clutch-grid">
 
-      <article class="clutch-item">
-        <img src="photo_2026-10-03 21.24.36.jpeg" alt="Gold clutch with crystal clasp">
-        <p class="clutch-name">Gold - clutch with Carvela Cecilia trim</p>
-        <a href="contact.html" class="clutch-arrow">&#8599;</a>
-      </article>
+    <label for="search-input" class="visually-hidden">Search</label>
+    <input type="text" id="search-input" class="form-control mb-3" placeholder="Search by name, e.g. silver...">
 
-      <article class="clutch-item clutch-tall">
-        <img src="G80658s4(2).jpg" alt="Model holding a pearl clutch">
-        <p class="clutch-name">Carvela Cecilia Hard Clutch</p>
-        <a href="contact.html" class="clutch-arrow">&#8599;</a>
-      </article>
-
-      <article class="clutch-item">
-        <img src="photo_2026-10-03 21.27.01.jpeg" alt="Silver crystal clutch with gold chain">
-        <p class="clutch-name">Silver - Dune London Elida Clutch</p>
-        <a href="contact.html" class="clutch-arrow">&#8599;</a>
-      </article>
-
-      <article class="clutch-item">
-        <img src="photo_2026-10-03 21.25.35.jpeg" alt="Silver envelope clutch">
-        <p class="clutch-name">Silver - Envelope Clutch</p>
-        <a href="contact.html" class="clutch-arrow">&#8599;</a>
-      </article>
-
-      <article class="clutch-item">
-        <img src="photo_2026-10-03 21.28.05.jpeg" alt="Silver crystal bow clutch">
-        <p class="clutch-name">Silver - Dune London Printed Clutch</p>
-        <a href="contact.html" class="clutch-arrow">&#8599;</a>
-      </article>
-    </section>
+    <p id="message"></p>
+    <div id="featured-grid" class="gallery" data-category="clutch"></div>
   </main>
+
   <footer class="site-footer text-center py-4">
     <p class="mb-0">&copy; 2026 MELORA clothing. All rights reserved.</p>
   </footer>
 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
