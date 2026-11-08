@@ -1,20 +1,24 @@
 let pageList = [];
 
+let currentType = "all";
+
 function formatPrice(price) {
-  return "Rp. " + price;
+  return "Rp. " + price.toLocaleString("de-DE");
 }
 
-function filterProducts(searchText, onlySale) {
+function filterProducts(searchText, onlySale, type) {
   const result = [];
   for (const item of pageList) {
     const nameOk = item.name.toLowerCase().includes(searchText.toLowerCase());
     const saleOk = !onlySale || item.sale;
-    if (nameOk && saleOk) {
+    const typeOk = type === "all" || item.type === type;
+    if (nameOk && saleOk && typeOk) {
       result.push(item);
     }
   }
   return result;
 }
+
 
 function createCard(item) {
   const card = document.createElement("article");
@@ -34,7 +38,6 @@ function createCard(item) {
     <button class="fav-btn" type="button">♥</button>
   `;
 
- 
   const heart = card.querySelector(".fav-btn");
   heart.addEventListener("click", function (event) {
     toggleFavorite(item.id, event.target);
@@ -42,7 +45,6 @@ function createCard(item) {
 
   return card;
 }
-
 
 function toggleFavorite(id, button) {
   if (favorites.includes(id)) {
@@ -66,12 +68,11 @@ function showProducts(list) {
   setupMoreButtons();
 }
 
-
 function applyFilters() {
   const searchText = document.getElementById("search-input").value;
   const saleBox = document.getElementById("sale-only");
   const onlySale = saleBox ? saleBox.checked : false;
-  showProducts(filterProducts(searchText, onlySale));
+  showProducts(filterProducts(searchText, onlySale, currentType));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -93,6 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (saleBox) {
       saleBox.addEventListener("change", applyFilters);
     }
+
+    const tabLinks = document.querySelectorAll(".tabs a");
+    tabLinks.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();               
+        currentType = link.dataset.type;      
+
+        tabLinks.forEach(function (other) {
+          other.classList.remove("active");
+        });
+        link.classList.add("active");         
+
+        applyFilters();
+      });
+    });
   }
 
   document.getElementById("theme-toggle").addEventListener("click", function () {
