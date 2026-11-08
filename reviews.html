@@ -27,9 +27,11 @@
       <ul class="menu menu-right">
         <li><a href="clutches.html">Clutches</a></li>
         <li><a href="reviews.html" class="active">Reviews</a></li>
+        <li><button id="theme-toggle" type="button">🌙</button></li>
       </ul>
     </nav>
   </header>
+
   <main>
     <section class="container py-5">
       <h1 class="section-title">What They Said</h1>
@@ -93,20 +95,44 @@
           </div>
 
           <div class="col-12 col-lg-6 join-divider">
-            <form id="signup-form" class="join-form" action="#" method="post">
+
+            <!-- Сообщение об успехе (сначала скрыто) -->
+            <div id="success-box" class="alert alert-success text-center" hidden></div>
+
+            <form id="signup-form" class="join-form" action="#" method="post" novalidate>
               <div class="mb-3">
                 <label for="signup-name" class="visually-hidden">Full Name</label>
                 <input type="text" class="form-control" id="signup-name" name="name" placeholder="Full Name">
+                <div class="invalid-feedback"></div>
               </div>
 
               <div class="mb-3">
                 <label for="signup-email" class="visually-hidden">Email Address</label>
-                <input type="email" class="form-control" id="signup-email" name="email" placeholder="Email Address">
+                <input type="text" class="form-control" id="signup-email" name="email" placeholder="Email Address">
+                <div class="invalid-feedback"></div>
               </div>
 
               <div class="mb-3">
                 <label for="signup-password" class="visually-hidden">Password</label>
-                <input type="password" class="form-control" id="signup-password" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="signup-password" name="password" placeholder="Password (min 8 characters)">
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="signup-confirm" class="visually-hidden">Confirm Password</label>
+                <input type="password" class="form-control" id="signup-confirm" name="confirm" placeholder="Confirm Password">
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="signup-interest" class="visually-hidden">Interest</label>
+                <select class="form-select" id="signup-interest" name="interest">
+                  <option value="">What are you interested in?</option>
+                  <option value="party">Party dresses</option>
+                  <option value="bridal">Bridal</option>
+                  <option value="clutches">Clutches</option>
+                </select>
+                <div class="invalid-feedback"></div>
               </div>
 
               <div class="form-check mb-3">
@@ -114,6 +140,7 @@
                 <label for="agree" class="form-check-label">
                   I agree to all the <strong>Terms</strong> and <strong>Privacy Policy</strong>
                 </label>
+                <div class="invalid-feedback"></div>
               </div>
 
               <div class="text-center mb-3">
@@ -126,6 +153,7 @@
       </div>
     </section>
   </main>
+
   <footer class="big-footer">
     <div class="container">
       <div class="row gy-4">
@@ -140,10 +168,9 @@
         <div class="col-6 col-md-2">
           <h3 class="footer-title">About Us</h3>
           <ul class="footer-list">
-            <li><a href="about.html">Our story</a></li>
             <li><a href="partydress.html">Collections</a></li>
-            <li><a href="about.html">About Melora</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="bridal.html">Bridal</a></li>
+            <li><a href="clutches.html">Clutches</a></li>
           </ul>
         </div>
 
@@ -154,7 +181,6 @@
             <li><a href="#">Shipping</a></li>
             <li><a href="#">Payment</a></li>
             <li><a href="#">Returns</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -171,5 +197,10 @@
     </p>
   </footer>
 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>
