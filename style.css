@@ -634,3 +634,41 @@ a:hover {
     margin: 0 20px 0 0;
   }
 }
+#theme-toggle { background: none; border: none; font-size: 22px; }
+#message { display: none; text-align: center; font-weight: 600; }
+.item-desc { display: none; font-size: 14px; }
+
+.card-item { position: relative; }
+.fav-btn { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px;
+  border: none; border-radius: 50%; background: #fff; color: #999; font-size: 20px; }
+.fav-btn.active { color: red; }
+
+body.dark { background-color: #1a1a1a; color: #eee; }
+body.dark .site-header { background-color: #1a1a1a; }
+body.dark .menu a, body.dark .logo { color: #eee; }
+body.dark .site-footer { background-color: #222; color: #eee; }
+body.dark #hero { color: #000; }
+
+.join-form .form-control.is-invalid,
+.join-form .form-select.is-invalid {
+  border: 1px solid #dc3545;
+}
+
+.join-form .form-select {
+  border: none;
+  text-align: center;
+}
+
+.join-form .invalid-feedback {
+  text-align: center;
+}
+
+body.dark .review-card,
+body.dark .join-section {
+  background-color: #2a2a2a;
+}
+
+body.dark .big-footer {
+  background-color: #1a1a1a;
+  color: #eee;
+}
