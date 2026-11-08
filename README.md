@@ -1,78 +1,90 @@
-# MELORA clothing
- 
-A multi-page responsive website for a fictional fashion brand that sells party dresses, wedding dresses and clutches. Made for the WEB Technologies Midterm Project.
- 
-**Authors:** Marzhan & Aigerim
- 
-**Published website:** _add your GitHub Pages / Netlify link here_
- 
-## Topic and idea
- 
-MELORA is an online clothing store. The design idea is "timeless elegance": a lace background, black text, soft beige blocks and large clean photos of dresses. The design was first made in Figma and then built with HTML, CSS and Bootstrap.
- 
+# MELORA clothing: Endterm Project
+
+MELORA is a multi-page responsive website for an elegant clothing and accessories brand (party dresses, bridal dresses and clutches). This endterm project continues our midterm website: the topic, layout, navigation and pages are the same, and we added interactive JavaScript and jQuery features to them.
+
+**Live website:** https://aikopopo.github.io/WEB-Endterm-Midterm-Project/
+**Repository:** https://github.com/aikopopo/WEB-Endterm-Midterm-Project
+
+## Group members
+Marzhan & Aigerim
+
 ## Pages
- 
-| File | Page | What is on it |
-|---|---|---|
-| `index.html` | Home | Hero screen with a background photo |
-| `partydress.html` | Party Dresses | Dress gallery with prices, SALE badges and a 50% off block |
-| `bridal.html` | Bridal | Wedding dresses, tabs and a size guide table |
-| `clutches.html` | Clutches | Accessories gallery with a large photo in the center |
-| `reviews.html` | Reviews | Customer reviews, sign-up form and a big footer |
- 
-Every page has the same navigation bar at the top, so it is possible to go from any page to any other page.
- 
-## Features
- 
-**HTML**
-- Semantic HTML5 tags: `header`, `nav`, `main`, `section`, `article`, `footer`
-- Headings, paragraphs, links, images with `alt` text
-- Lists: menu (`ul` / `li`), benefits list, ordered list
-- Table: size guide on `bridal.html`
-- Forms: message form (`contact.html`) and sign-up form (`reviews.html`) with labels and input types
-- `div` and `span` for structure and styling
-**CSS**
-- One shared file `style.css` for all pages, split into commented sections
-- Classes and IDs (`#hero`, `#promo`, `#contact-form`, `.card-item`, ...)
-- Flexbox: menu, hero, promo block, tabs
-- CSS Grid: header layout, dress gallery, clutches layout
-- Positioning: `position: sticky` for the header, `position: absolute` for the SALE badge and the clutch captions inside `position: relative` cards
-- Consistent colors, fonts and spacing across all pages
-**Responsive design**
-- Media queries for two breakpoints: tablet (`max-width: 992px`) and mobile (`max-width: 576px`)
-- Bootstrap 5 grid: `container`, `row`, `col-12 col-md-4`, `col-lg-6` and others
-- Bootstrap utilities: `py-5`, `text-center`, `mb-3`, `btn`, `form-control`, `table`, `table-responsive`, `visually-hidden`
+
+| Page | Description |
+|------|-------------|
+| `index.html` | Home page with the hero section and theme switcher |
+| `partydress.html` | Party dresses catalog: search, "Only sale" filter, favorites |
+| `bridal.html` | Bridal catalog: working tabs, search, favorites, size guide table |
+| `clutches.html` | Clutches catalog: search, favorites |
+| `reviews.html` | Customer reviews and the Sign Up form with validation |
+
 ## Project structure
- 
+
 ```
-Midterm project/
-  index.html
-  partydress.html
-  bridal.html
-  clutches.html
-  reviews.html
-  style.css
-  README.md
-  images (jpg / png files, see below)
+index.html, partydress.html, bridal.html, clutches.html, reviews.html
+style.css          styles (Bootstrap + custom, dark theme)
+js/
+  data.js          arrays: products, favorites
+  main.js          catalog rendering, search, filters, tabs, favorites, theme switcher
+  effects.js       jQuery: messages, MORE button, card hover
+  form.js          Sign Up form validation
 ```
- 
-Images used: `lace.jpg` (hero background), `dress1.jpg` - `dress6.jpg`, `ballerina.png`, `ballerina2.png`, `bridal1.jpg` - `bridal6.jpg`, `clutch1.jpg` - `clutch5.jpg`, `review1.jpg` - `review3.jpg`.
- 
-## How to run
- 
-1. Put all `.html` files, `style.css` and the images in one folder.
-2. Open `index.html` in a browser.
-Internet is needed to load Bootstrap and the Inter font from a CDN.
- 
-## How to publish (GitHub Pages)
- 
-1. Create a new public repository on GitHub.
-2. Upload all project files (the files must be in the root of the repository, not inside an extra folder).
-3. Open **Settings → Pages**, choose the branch `main` and the folder `/ (root)`, press **Save**.
-4. After a minute the site is available at `https://<username>.github.io/<repository>/`. Paste this link at the top of this README.
-## Notes
- 
-- The tabs on the Bridal page (Ball Gown, A-Line, ...) are only visual, they do not filter dresses.
-- The forms do not send data anywhere because there is no server part in this project.
-- Prices, names and reviews are sample content.
- 
+
+The same `main.js` works on all catalog pages. Each page tells the script which products to show with `data-category` (for example `data-category="party"`).
+
+## New endterm features
+
+**JavaScript**
+- **Arrays:** `products` (all dresses and clutches) and `favorites` (ids of liked items).
+- **Loops:** `for...of` in `filterProducts`, `forEach` in `showProducts` and in the tabs code.
+- **Functions:** `formatPrice` and `filterProducts` (return values), `createCard`, `toggleFavorite`, `showProducts`, `applyFilters`, and the `check...` functions in `form.js`.
+
+**DOM manipulation and events**
+- Product cards are created from the array, not written in HTML.
+- Cards are added and removed when searching or filtering.
+- Classes, text and visibility change on user actions.
+- Events used: `DOMContentLoaded`, `input`, `change`, `click`, `submit`.
+- `event.target` is used in the search and favorites handlers; `event.preventDefault()` is used in the bridal tabs and the form.
+
+**Interface features**
+1. Search by name (Party Dresses, Bridal, Clutches)
+2. "Only sale" filter (Party Dresses)
+3. Working tabs: All, Ball Gown, A-Line, Mermaid, Lace (Bridal)
+4. Favorites with heart buttons and a counter in the header
+5. Dark theme switcher (all pages)
+6. MORE button that shows and hides the product description
+
+**Form validation (Reviews page, Sign Up form)**
+- Full name: required, at least 2 characters
+- Email: required, correct format
+- Password: required, at least 8 characters
+- Confirm password: must match the password
+- Interest (select): an option must be chosen
+- Checkbox "I agree": must be checked
+- Error messages appear under each field, the field turns red, and the form is not submitted while errors remain.
+- When everything is valid, the form is replaced by a "Welcome to MELORA" message.
+
+**jQuery**
+- Selectors: ID (`#message`, `#featured-grid`), class (`.details-btn`, `.card-item`).
+- Traversal: `closest()`, `find()`.
+- Events: `click`, `mouseenter`, `mouseleave`.
+- Effects: `fadeIn` / `fadeOut` for the "Added to favorites" message, `slideToggle` for the product description.
+
+## How to test the interactive features
+
+1. **Dark theme (any page):** click the moon button in the header. The page turns dark and the icon changes.
+2. **Search (Party Dresses, Bridal, Clutches):** type a word, for example `blue` on Party Dresses or `silver` on Clutches. Only matching cards stay. Clear the field to see all cards again.
+3. **Only sale (Party Dresses):** tick the checkbox. Only items with the SALE badge remain.
+4. **Tabs (Bridal):** click Mermaid, Lace, Ball Gown and A-Line. The cards change, the active tab is highlighted and the page does not jump. Search works together with tabs.
+5. **Favorites:** click the heart on a card. It turns red, the counter in the header goes up and a message appears and fades out. Click again to remove it.
+6. **MORE button:** click MORE on a card. The description slides open; click again to hide it.
+7. **Card hover:** move the mouse over a card. It gets a shadow.
+8. **Sign Up form (Reviews):**
+   - Press SIGN UP with empty fields: error messages appear under every field.
+   - Enter `abc` as email, a short password or different passwords: you get specific messages.
+   - Start fixing a field: its error disappears.
+   - Fill everything correctly, tick the checkbox and submit: the success message appears.
+
+## Technologies
+
+HTML5, CSS3, Bootstrap 5.3, JavaScript (ES6), jQuery 3.7. Hosted on GitHub Pages.
