@@ -54,6 +54,15 @@
           <option value="low">Price: low to high</option>
           <option value="high">Price: high to low</option>
         </select>
+        <label for="currency-select" class="visually-hidden">Currency</label>
+        <select id="currency-select" class="form-select mb-2">
+          <option value="IDR">Currency: Rp. (IDR)</option>
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="KZT">KZT (₸)</option>
+        </select>
+        <p id="rate-status" class="rate-status"></p>
+        <p class="small">Rates by <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a></p>
 
         <p id="message"></p>
         <div id="featured-grid" class="gallery" data-category="bridal"></div>
