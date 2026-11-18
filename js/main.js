@@ -1,5 +1,4 @@
 let pageList = [];
-
 let currentType = "all";
 
 function filterProducts(searchText, onlySale, type) {
@@ -10,6 +9,22 @@ function filterProducts(searchText, onlySale, type) {
     }
   }
   return result;
+}
+function sortProducts(list, sortType) {
+  const sorted = list.slice();            
+  if (sortType === "low") {
+    sorted.sort(function (a, b) { return a.price - b.price; });   
+  } else if (sortType === "high") {
+    sorted.sort(function (a, b) { return b.price - a.price; });   
+  }
+  return sorted;                         
+}
+
+function updateFavCount() {
+  const counter = document.getElementById("fav-count");
+  if (counter) {
+    counter.textContent = favorites.length;
+  }
 }
 
 function toggleFavorite(id, button) {
@@ -22,14 +37,15 @@ function toggleFavorite(id, button) {
     button.classList.add("active");
     showMessage("Added to favorites");
   }
-  document.getElementById("fav-count").textContent = favorites.length;
+  saveToStorage("melora-favorites", favorites);
+  updateFavCount();
 }
 
 function showProducts(list) {
   const grid = document.getElementById("featured-grid");
   grid.innerHTML = "";
   list.forEach(function (item) {
-    grid.appendChild(item.createCard());   
+    grid.appendChild(item.createCard());
   });
   setupMoreButtons();
 }
@@ -38,7 +54,24 @@ function applyFilters() {
   const searchText = document.getElementById("search-input").value;
   const saleBox = document.getElementById("sale-only");
   const onlySale = saleBox ? saleBox.checked : false;
-  showProducts(filterProducts(searchText, onlySale, currentType));
+  const sortBox = document.getElementById("sort-select");
+  const sortType = sortBox ? sortBox.value : "default";
+
+  const filtered = filterProducts(searchText, onlySale, currentType);
+  showProducts(sortProducts(filtered, sortType));
+}
+function clearFavorites() {
+  favorites = [];
+  saveToStorage("melora-favorites", favorites);
+  updateFavCount();
+  applyFilters();
+  showMessage("Favorites cleared");
+}
+
+function setTheme(isDark) {
+  document.body.classList.toggle("dark", isDark);
+  document.getElementById("theme-toggle").textContent = isDark ? "☀️" : "🌙";
+  saveToStorage("melora-theme", isDark ? "dark" : "light");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -52,7 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
         pageList.push(item);
       }
     }
-    showProducts(pageList);
+    applyFilters();                    
+    updateFavCount();
 
     document.getElementById("search-input").addEventListener("input", applyFilters);
 
@@ -61,23 +95,38 @@ document.addEventListener("DOMContentLoaded", function () {
       saleBox.addEventListener("change", applyFilters);
     }
 
+    const sortBox = document.getElementById("sort-select");
+    if (sortBox) {
+      sortBox.addEventListener("change", applyFilters);
+    }
+
+    const clearBtn = document.getElementById("clear-favs");
+    if (clearBtn) {
+      clearBtn.addEventListener("click", clearFavorites);
+    }
+
     const tabLinks = document.querySelectorAll(".tabs a");
     tabLinks.forEach(function (link) {
       link.addEventListener("click", function (event) {
-        event.preventDefault();               
-        currentType = link.dataset.type;      
+        event.preventDefault();
+        currentType = link.dataset.type;
 
-        tabLinks.forEach(function (other) {   
+        tabLinks.forEach(function (other) {
           other.classList.remove("active");
         });
-        link.classList.add("active");         
+        link.classList.add("active");
 
         applyFilters();
       });
     });
   }
 
-  document.getElementById("theme-toggle").addEventListener("click", function () {
-    document.body.classList.toggle("dark");
-  });
+  const themeBtn = document.getElementById("theme-toggle");
+  if (themeBtn) {
+    setTheme(loadFromStorage("melora-theme", "light") === "dark");
+
+    themeBtn.addEventListener("click", function () {
+      setTheme(!document.body.classList.contains("dark"));
+    });
+  }
 });
