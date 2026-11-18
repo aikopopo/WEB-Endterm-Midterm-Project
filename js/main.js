@@ -2,48 +2,14 @@ let pageList = [];
 
 let currentType = "all";
 
-function formatPrice(price) {
-  return "Rp. " + price.toLocaleString("de-DE");
-}
-
 function filterProducts(searchText, onlySale, type) {
   const result = [];
   for (const item of pageList) {
-    const nameOk = item.name.toLowerCase().includes(searchText.toLowerCase());
-    const saleOk = !onlySale || item.sale;
-    const typeOk = type === "all" || item.type === type;
-    if (nameOk && saleOk && typeOk) {
+    if (item.matches(searchText, onlySale, type)) {
       result.push(item);
     }
   }
   return result;
-}
-
-
-function createCard(item) {
-  const card = document.createElement("article");
-  card.className = "card-item";
-
-  let saleBadge = "";
-  if (item.sale) {
-    saleBadge = '<span class="badge-sale">SALE</span>';
-  }
-
-  card.innerHTML = saleBadge + `
-    <img src="${item.image}" alt="${item.name}">
-    <p class="item-name">${item.name}</p>
-    <p class="item-price">${formatPrice(item.price)}</p>
-    <p class="item-desc">${item.description}</p>
-    <button class="btn btn-melora details-btn" type="button">MORE</button>
-    <button class="fav-btn" type="button">♥</button>
-  `;
-
-  const heart = card.querySelector(".fav-btn");
-  heart.addEventListener("click", function (event) {
-    toggleFavorite(item.id, event.target);
-  });
-
-  return card;
 }
 
 function toggleFavorite(id, button) {
@@ -63,7 +29,7 @@ function showProducts(list) {
   const grid = document.getElementById("featured-grid");
   grid.innerHTML = "";
   list.forEach(function (item) {
-    grid.appendChild(createCard(item));
+    grid.appendChild(item.createCard());   
   });
   setupMoreButtons();
 }
@@ -101,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();               
         currentType = link.dataset.type;      
 
-        tabLinks.forEach(function (other) {
+        tabLinks.forEach(function (other) {   
           other.classList.remove("active");
         });
         link.classList.add("active");         
