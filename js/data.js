@@ -95,4 +95,5 @@ for (const data of productData) {
   products.push(new Product(data));
 }
 
-let favorites = [];
+const savedFavorites = loadFromStorage("melora-favorites", []);
+let favorites = Array.isArray(savedFavorites) ? savedFavorites : [];
