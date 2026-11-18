@@ -1,4 +1,58 @@
-const products = [
+class Product {
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.price = data.price;
+    this.category = data.category;
+    this.type = data.type;          
+    this.sale = data.sale;
+    this.image = data.image;
+    this.description = data.description;
+  }
+
+  getPrice() {
+    return "Rp. " + this.price.toLocaleString("de-DE");
+  }
+
+  matches(searchText, onlySale, type) {
+    const nameOk = this.name.toLowerCase().includes(searchText.toLowerCase());
+    const saleOk = !onlySale || this.sale;
+    const typeOk = type === "all" || this.type === type;
+    return nameOk && saleOk && typeOk;
+  }
+
+  createCard() {
+    const card = document.createElement("article");
+    card.className = "card-item";
+
+    let saleBadge = "";
+    if (this.sale) {
+      saleBadge = '<span class="badge-sale">SALE</span>';
+    }
+
+    card.innerHTML = saleBadge + `
+      <img src="${this.image}" alt="${this.name}">
+      <p class="item-name">${this.name}</p>
+      <p class="item-price">${this.getPrice()}</p>
+      <p class="item-desc">${this.description}</p>
+      <button class="btn btn-melora details-btn" type="button">MORE</button>
+      <button class="fav-btn" type="button">♥</button>
+    `;
+
+    const heart = card.querySelector(".fav-btn");
+    
+    if (favorites.includes(this.id)) {
+      heart.classList.add("active");
+    }
+    heart.addEventListener("click", (event) => {
+      toggleFavorite(this.id, event.target);
+    });
+
+    return card;
+  }
+}
+
+const productData = [
   { id: 1, name: "Look 1 Gold Beads", price: 125000, category: "party", sale: true, image: "photo_2026-10-03 19.18.44.jpeg", description: "Party dress with gold beads." },
   { id: 2, name: "Look 2 Blue Gown", price: 180000, category: "party", sale: false, image: "photo_2026-10-03 19.18.39.jpeg", description: "Blue beaded evening gown." },
   { id: 3, name: "Look 3 Floral Dress", price: 129000, category: "party", sale: true, image: "photo_2026-10-03 19.21.45.jpeg", description: "Floral embroidered dress with pink shawl." },
@@ -19,5 +73,10 @@ const products = [
   { id: 16, name: "Silver Envelope Clutch", price: 85000, category: "clutch", sale: false, image: "photo_2026-10-03 21.25.35.jpeg", description: "Silver envelope clutch." },
   { id: 17, name: "Silver Printed Clutch", price: 100000, category: "clutch", sale: false, image: "photo_2026-10-03 21.28.05.jpeg", description: "Silver crystal bow clutch (Dune London Printed)." }
 ];
+
+const products = [];
+for (const data of productData) {
+  products.push(new Product(data));
+}
 
 let favorites = [];
