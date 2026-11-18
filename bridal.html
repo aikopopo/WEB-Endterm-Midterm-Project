@@ -48,6 +48,12 @@
         <label for="search-input" class="visually-hidden">Search</label>
         <input type="text" id="search-input" class="form-control mb-3" placeholder="Search by name...">
         <button id="clear-favs" type="button" class="btn btn-melora mb-3 d-block">Clear favorites</button>
+        <label for="sort-select" class="visually-hidden">Sort by price</label>
+        <select id="sort-select" class="form-select mb-3">
+          <option value="default">Sort: default</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+        </select>
 
         <p id="message"></p>
         <div id="featured-grid" class="gallery" data-category="bridal"></div>
