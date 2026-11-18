@@ -27,7 +27,15 @@ class Product {
   }
 
   getPrice() {
-    return "Rp. " + this.price.toLocaleString("de-DE");
+    if (currentCurrency === "IDR" || !rates || !rates[currentCurrency]) {
+      return "Rp. " + this.price.toLocaleString("de-DE");
+    }
+    const converted = this.price * rates[currentCurrency];  
+    return converted.toLocaleString("en-US", {
+      style: "currency",
+      currency: currentCurrency,
+      maximumFractionDigits: 2
+    });
   }
 
   matches(searchText, onlySale, type) {
@@ -97,3 +105,6 @@ for (const data of productData) {
 
 const savedFavorites = loadFromStorage("melora-favorites", []);
 let favorites = Array.isArray(savedFavorites) ? savedFavorites : [];
+
+let currentCurrency = "IDR";
+let rates = null;
